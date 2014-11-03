@@ -12,7 +12,7 @@ from Tkinter import *
 root = Tk()
 # Create our drawpad and oval
 drawpad = Canvas(root, width=480,height=320, background='white')
-oval = drawpad.create_oval(160,160,320,320, fill="red")
+oval = drawpad.create_oval(160,160,320,320, fill="black")
 
 class MyApp:
 	def __init__(self, parent):
@@ -27,11 +27,15 @@ class MyApp:
 		self.button1.grid(row=0,column=0)
 		
 	        # Add a second button!
-				
+		self.button2 = Button(self.myContainer1)
+		self.button2.configure(text="Right", background= "green")
+		self.button2.grid(row=0,column=1)
 		
 						
 		# "Bind" an action to the first button												
 		self.button1.bind("<Button-1>", self.button1Click)
+		self.button2.bind("<Button-1>", self.button2Click)
+		
 		# Create the code to bind an action to the second button
 		# Do not change "<Button-1>"
 		 
@@ -46,7 +50,12 @@ class MyApp:
                 # "global" makes sure that we can access our oval and our drawpad
 		global oval
 		global drawpad
+		drawpad.move(oval,-10,0)
 	
+	def button2Click(self,event):
+	       global oval
+	       global drawpad
+	       drawpad.move(oval,10,0)
 	# Add the event handler for the second button to make it move right!
 	
 		
